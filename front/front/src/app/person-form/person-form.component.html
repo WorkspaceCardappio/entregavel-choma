@@ -20,6 +20,13 @@
     <div class="list-header">
       <h4>Pessoas</h4>
     </div>
+    <div class="grid">
+      <span><b>Id</b></span>
+      <span><b>Nome</b></span>
+      <span><b>CPF</b></span>
+      <span><b>Data de Nascimento</b></span>
+      <span><b>Telefone</b></span>
+    </div>
     @for (person of people; track $index) {
       <div class="grid">
         <span>{{ person.id }}</span>
