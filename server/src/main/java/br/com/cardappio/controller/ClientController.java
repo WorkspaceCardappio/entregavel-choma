@@ -7,7 +7,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -28,8 +30,17 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<Client> create(@RequestBody @Valid Client newClient) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(newClient));
+    public ResponseEntity<Void> create(@RequestBody @Valid Client newClient) {
+
+        Long idSaved = service.save(newClient);
+
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(idSaved)
+                .toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping

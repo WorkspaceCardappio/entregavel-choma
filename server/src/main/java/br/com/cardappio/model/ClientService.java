@@ -21,8 +21,8 @@ public class ClientService {
         return repository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
-    public Client save(Client newClient) {
-        return repository.save(newClient);
+    public Long save(Client newClient) {
+        return repository.save(newClient).getId();
     }
 
     public Client update(Client updatedClient) {
