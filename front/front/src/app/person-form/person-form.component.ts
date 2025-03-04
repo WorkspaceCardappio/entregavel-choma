@@ -40,7 +40,9 @@ export class PersonFormComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.service.create(this.form.value).subscribe(() => {
+      this.service.create(this.form.value).subscribe((response) => {
+        console.log(response.headers.get('Location'));
+
         this.find();
         this.error = null;
       }, (error) => {

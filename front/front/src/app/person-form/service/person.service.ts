@@ -13,7 +13,7 @@ export class PersonService {
   ) {}
 
   create(person: any) {
-    return this.client.post(this.url, person);
+    return this.client.post(this.url, person, { observe: 'response' });
   }
 
   find() {
