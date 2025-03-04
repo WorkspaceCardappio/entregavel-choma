@@ -36,6 +36,6 @@ public class Client {
     private LocalDate birthDate;
 
     @Column(name = "telefone")
-    @Length(min = 11, max = 11)
+    @Length(max = 11)
     private String phoneNumber;
 }

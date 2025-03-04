@@ -20,7 +20,7 @@ public class ClientController {
     private final ClientService service;
 
     @GetMapping
-    public ResponseEntity<List<Client>> findAll() {
+    public ResponseEntity<List<Client>> findAll() { 
         return ResponseEntity.ok(service.findAll());
     }
 
