@@ -47,13 +47,38 @@
   border-radius: 30px 0 0 30px;
 }
 
-.show-error {
-  width: 300px;
-  height: auto;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgb(185, 154, 154);
-  padding: 20px;
+
+.list {
+  width: 100%;
+  max-width: 796px;
+  margin-top: 20px;
+}
+
+.list-header {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.list-header button {
+  width: 200px;
+  height: 40px;
+  background-color: green;
+  color: white;
   border-radius: 10px;
+  border: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: auto;
+  border-bottom: 1px dashed #ccc;
+}
+
+.grid span {
+  padding: 5px;
+  text-align: center;
 }

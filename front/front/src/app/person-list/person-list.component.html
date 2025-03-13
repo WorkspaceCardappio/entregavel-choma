@@ -1,0 +1,29 @@
+<div class="main">
+  <div class="header">
+    <h3>Cardappio</h3>
+  </div>
+  <div class="list">
+    <div class="list-header">
+      <h4>Pessoas</h4>
+      <button (click)="goToForm()">New</button>
+    </div>
+    <div class="grid">
+      <span><b>Id</b></span>
+      <span><b>Nome</b></span>
+      <span><b>CPF</b></span>
+      <span><b>Data de Nascimento</b></span>
+      <span><b>Telefone</b></span>
+    </div>
+    @for (person of people; track $index) {
+      <div class="grid">
+        <span>{{ person.id }}</span>
+        <span>{{ person.name }}</span>
+        <span>{{ person.cpf }}</span>
+        <span>{{ person.birthDate }}</span>
+        <span>{{ person.phoneNumber }}</span>
+        <span (click)="goToFormWithId(person.id)">Editar</span>
+        <span (click)="delete(person.id)">Deletar</span>
+      </div>
+    }
+  </div>
+</div>

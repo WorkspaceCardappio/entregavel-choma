@@ -15,32 +15,4 @@
       </div>
     </form>
   </div>
-
-  <div class="list">
-    <div class="list-header">
-      <h4>Pessoas</h4>
-    </div>
-    <div class="grid">
-      <span><b>Id</b></span>
-      <span><b>Nome</b></span>
-      <span><b>CPF</b></span>
-      <span><b>Data de Nascimento</b></span>
-      <span><b>Telefone</b></span>
-    </div>
-    @for (person of people; track $index) {
-      <div class="grid">
-        <span>{{ person.id }}</span>
-        <span>{{ person.name }}</span>
-        <span>{{ person.cpf }}</span>
-        <span>{{ person.birthDate }}</span>
-        <span>{{ person.phoneNumber }}</span>
-      </div>
-    }
-  </div>
 </div>
-
-@if (error) {
-  <div class="show-error" >
-    {{ error }}
-  </div>
-}

@@ -19,4 +19,8 @@ export class PersonService {
   find() {
     return this.client.get(this.url);
   }
+
+  findById(id: string) {
+    return this.client.get(`${this.url}/${id}`);
+  }
 }
