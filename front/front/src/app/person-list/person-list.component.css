@@ -73,7 +73,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(5, 5fr) 1fr 1fr;
   grid-template-rows: auto;
   border-bottom: 1px dashed #ccc;
 }
@@ -81,4 +81,8 @@
 .grid span {
   padding: 5px;
   text-align: center;
+
+  svg {
+    cursor: pointer;
+  }
 }

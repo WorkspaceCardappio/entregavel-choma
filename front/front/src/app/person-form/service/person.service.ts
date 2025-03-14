@@ -23,4 +23,12 @@ export class PersonService {
   findById(id: string) {
     return this.client.get(`${this.url}/${id}`);
   }
+
+  put(id: string, body: any) {
+    return this.client.put(`${this.url}/${id}`, body);
+  }
+
+  delete(id: string) {
+    return this.client.delete(`${this.url}/${id}`);
+  }
 }

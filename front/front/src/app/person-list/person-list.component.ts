@@ -42,7 +42,7 @@ export class PersonListComponent implements OnInit {
     this.router.navigate(['/form', id]);
   }
 
-  delete(id: number) {
-    // DELETAR
+  delete(id: string) {
+    this.service.delete(id).subscribe(() => this.find());
   }
 }
