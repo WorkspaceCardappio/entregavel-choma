@@ -25,8 +25,8 @@ public class ClientService {
         return repository.save(newClient).getId();
     }
 
-    public Client update(Client updatedClient) {
-        return repository.findById(updatedClient.getId())
+    public Client update(final Long id, final Client updatedClient) {
+        return repository.findById(id)
                 .map(client -> repository.save(updatedClient))
                 .orElseThrow(EntityNotFoundException::new);
     }
