@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Observable, ObservedValueTupleFromArray} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class PersonService {
     return this.client.post(this.url, person, { observe: 'response' });
   }
 
-  find() {
+  find(): Observable<any> {
     return this.client.get(this.url);
   }
 

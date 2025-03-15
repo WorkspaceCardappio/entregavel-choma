@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { PersonService } from '../person-form/service/person.service';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
+import {PersonService} from '../person-form/service/person.service';
+import {DatePipe} from '@angular/common';
+import {CPFPipe} from '../config/cpf.pipe';
+import {PhoneNumberPipe} from '../config/phone-number.pipe';
 
 @Component({
   selector: 'app-person-list',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DatePipe,
+    CPFPipe,
+    PhoneNumberPipe
   ],
   providers: [
-    PersonService
+    PersonService,
   ],
   templateUrl: './person-list.component.html',
   styleUrl: './person-list.component.css',
@@ -21,7 +27,7 @@ export class PersonListComponent implements OnInit {
 
   constructor(
     private service: PersonService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -30,8 +36,9 @@ export class PersonListComponent implements OnInit {
 
   find() {
     this.service.find().subscribe(people => {
+
       this.people = people;
-    })
+    });
   }
 
   goToForm() {
@@ -45,4 +52,6 @@ export class PersonListComponent implements OnInit {
   delete(id: string) {
     this.service.delete(id).subscribe(() => this.find());
   }
+
+
 }

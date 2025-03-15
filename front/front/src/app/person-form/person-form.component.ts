@@ -12,7 +12,6 @@ import { PersonService } from './service/person.service';
   ],
   providers: [
     PersonService,
-    DatePipe
   ],
   templateUrl: './person-form.component.html',
   styleUrl: './person-form.component.css',
@@ -20,7 +19,6 @@ import { PersonService } from './service/person.service';
 export class PersonFormComponent implements OnInit {
 
   form: FormGroup<any> = new FormGroup('');
-  person: any = {};
   error: any;
   id: string | null | undefined;
 
@@ -29,7 +27,6 @@ export class PersonFormComponent implements OnInit {
     private service: PersonService,
     private router: Router,
     private route: ActivatedRoute,
-    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +50,6 @@ export class PersonFormComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       let person = this.form.value;
-      person.birthDate = this.datePipe.transform(person.birthDate, 'dd/MM/yyyy');
 
       this.id
         ? this.update(this.id, person)
@@ -76,8 +72,6 @@ export class PersonFormComponent implements OnInit {
   }
 
   update(id: string, person: any) {
-
-    this.formatFields(person);
 
     this.service.put(id, person).pipe(
       switchMap(() => {
@@ -106,18 +100,6 @@ export class PersonFormComponent implements OnInit {
   }
 
   populateForm(person: any) {
-    this.formatDate(person);
     this.form.patchValue(person);
-  }
-
-  private formatFields(person: any) {
-    person.cpf = person.cpf.replace(/\D/g, '');
-  }
-
-  private formatDate(person: any) {
-    if (!person.birthDate) return this.form.patchValue(person);
-
-    const date = person.birthDate.split("/");
-    person.birthDate = this.datePipe.transform(`${date[2]}-${date[1]}-${date[0]}`, 'yyyy-MM-dd');
   }
 }
