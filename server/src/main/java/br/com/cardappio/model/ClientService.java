@@ -1,17 +1,19 @@
 package br.com.cardappio.model;
 
+import br.com.cardappio.client.SMTPFeignClient;
+import br.com.cardappio.dto.EmailRequest;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ClientService {
 
     private final ClientRepository repository;
+    private final SMTPFeignClient smtpFeignClient;
 
     public List<Client> findAll() {
         return repository.findAll();
@@ -22,7 +24,12 @@ public class ClientService {
     }
 
     public Long save(Client newClient) {
-        return repository.save(newClient).getId();
+
+        Client savedClient = repository.save(newClient);
+
+        smtpFeignClient.sendEmail(buildEmailRequest(savedClient));
+
+        return savedClient.getId();
     }
 
     public Client update(final Long id, final Client updatedClient) {
@@ -33,6 +40,11 @@ public class ClientService {
 
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+    private EmailRequest buildEmailRequest(Client client) {
+
+        return new EmailRequest(client.getEmail(), "Seja Bem-Vindo", "Seu Cadastro foi concluído com sucesso");
     }
 
 }
