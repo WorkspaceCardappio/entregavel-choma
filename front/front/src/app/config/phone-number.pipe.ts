@@ -7,10 +7,6 @@ export class PhoneNumberPipe implements PipeTransform {
 
   transform(phoneNumber: string): string {
 
-    if (!phoneNumber) {
-      return '';
-    }
-
-    return `({${phoneNumber.slice(0, 1)}) ${phoneNumber.slice(2, 6)}-${phoneNumber.slice(7, 10)}`;
+    return phoneNumber ? `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7, 11)}` : '';
   }
 }

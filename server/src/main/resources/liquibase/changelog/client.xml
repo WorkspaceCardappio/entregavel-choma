@@ -29,4 +29,18 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         </createTable>
     </changeSet>
 
+    <changeSet id="ADD_COLUMN_EMAIL_CLIENTE" author="ricardo.filho">
+        <validCheckSum>ANY</validCheckSum>
+
+        <preConditions onFail="MARK_RAN" onFailMessage="A coluna EMAIL já existe.">
+            <not>
+                <columnExists tableName="CLIENTE" columnName="EMAIL"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="CLIENTE">
+            <column name="EMAIL" type="${string255}"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

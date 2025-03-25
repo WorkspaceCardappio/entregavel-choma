@@ -3,6 +3,7 @@ package br.com.cardappio.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import lombok.*;
@@ -40,5 +41,9 @@ public class Client {
     @Column(name = "telefone")
     @Length(max = 11)
     private String phoneNumber;
+
+    @Email
+    @Length(max = 255)
+    private String email;
 
 }

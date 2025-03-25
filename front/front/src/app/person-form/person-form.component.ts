@@ -39,6 +39,7 @@ export class PersonFormComponent implements OnInit {
       cpf: [''],
       birthDate: [''],
       phoneNumber: [''],
+      email: [''],
     });
 
     this.findPersonByRoute().subscribe(person => {
