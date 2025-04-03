@@ -3,7 +3,7 @@ package br.com.cardappio.controller;
 import br.com.cardappio.model.Client;
 import br.com.cardappio.model.ClientService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,18 +14,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/clients")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ClientController {
 
     private final ClientService service;
 
     @GetMapping
-    public ResponseEntity<List<Client>> findAll() { 
+    public ResponseEntity<List<Client>> findAll() {
+
         return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Client> findOne(@PathVariable(value = "id") Long id) {
+
         return ResponseEntity.ok(service.findOne(id));
     }
 
@@ -45,6 +47,7 @@ public class ClientController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Client> update(@PathVariable Long id, @RequestBody @Valid Client newClient) {
+
         return ResponseEntity.ok(service.update(id, newClient));
     }
 

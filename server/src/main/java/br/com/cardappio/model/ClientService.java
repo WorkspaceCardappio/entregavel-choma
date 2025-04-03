@@ -3,23 +3,25 @@ package br.com.cardappio.model;
 import br.com.cardappio.client.SMTPFeignClient;
 import br.com.cardappio.dto.EmailRequest;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ClientService {
 
     private final ClientRepository repository;
     private final SMTPFeignClient smtpFeignClient;
 
     public List<Client> findAll() {
+
         return repository.findAll();
     }
 
     public Client findOne(Long id) {
+
         return repository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
