@@ -1,11 +1,17 @@
-package br.com.cardappio.model;
+package br.com.cardappio.service;
 
 import br.com.cardappio.client.SMTPFeignClient;
 import br.com.cardappio.dto.EmailRequest;
+import br.com.cardappio.domain.Client;
+import br.com.cardappio.enums.TipoPagamento;
+import br.com.cardappio.interfaces.Pagamento;
+import br.com.cardappio.repository.ClientRepository;
+import br.com.cardappio.utils.PagamentoFactory;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -28,6 +34,9 @@ public class ClientService {
     public Long save(Client newClient) {
 
         Client savedClient = repository.save(newClient);
+
+        Pagamento pagamento = PagamentoFactory.createPagamento(TipoPagamento.PIX);
+        pagamento.processarPagamento(BigDecimal.valueOf(Math.random()));
 
         smtpFeignClient.sendEmail(buildEmailRequest(savedClient));
 

@@ -1,7 +1,7 @@
 package br.com.cardappio.controller;
 
-import br.com.cardappio.model.Client;
-import br.com.cardappio.model.ClientService;
+import br.com.cardappio.domain.Client;
+import br.com.cardappio.service.ClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,5 +1,6 @@
-package br.com.cardappio.model;
+package br.com.cardappio.repository;
 
+import br.com.cardappio.domain.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
