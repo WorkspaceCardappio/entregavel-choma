@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum TipoPagamento {
+
     PIX(new Pix()),
     CARTAO_CREDITO(new CartaoCredito()),
     CARTAO_DEBITO(new CartaoDebito());
